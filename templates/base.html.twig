@@ -3,10 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <header>
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container d-flex justify-content-between">
+                    <a href="{{ path('index_page') }}" class="navbar-brand d-flex align-items-center">OC Client</a>
+                    <a href="#">Login</a>
+                </div>
+            </div>
+        </header>
+        <main role="main">
+            {% block body %}{% endblock %}
+        </main>
+        <footer class="text-muted">
+            <div class="container">
+                <p>OD Client, 2020</p>
+            </div>
+        </footer>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
