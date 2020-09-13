@@ -15,5 +15,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@amcharts/amcharts4": "^4.10.2",
+        "axios": "^0.20.0"
     }
 }

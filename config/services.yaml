@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.tags_count: 50
+    app.cacheExpiration: 3600
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +31,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Services\TagsCloudService\TagsCloudService:
+        arguments:
+            $tagsCount: '%app.tags_count%'
+
+    App\Services\TagsCloudService\TagsCloudServiceDecorator:
+        arguments:
+            $cacheExpiration: '%app.cacheExpiration%'
+
+    App\Services\TagsCloudService\TagsCloudInterface $tagsCloudService: '@App\Services\TagsCloudService\TagsCloudServiceDecorator'
