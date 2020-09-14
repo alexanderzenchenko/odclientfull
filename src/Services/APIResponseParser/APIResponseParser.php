@@ -23,16 +23,20 @@ class APIResponseParser implements APIResponseParserInterface
 
                     if (property_exists($entries, 'pronunciations')) {
                         foreach($entries->pronunciations as $pronunciations) {
-                            $pron[] = $pronunciations->audioFile;
+                            if (property_exists($pronunciations, 'audioFile')) {
+                                $pron[] = $pronunciations->audioFile;
+                            }
                         }
                     }
 
                     $def = [];
 
-                    foreach ($entries->senses as $senses) {
-                        if (property_exists($entries, 'pronunciations')) {
-                            foreach ($senses->definitions as $definition) {
-                                $def[] = $definition;
+                    if (property_exists($entries, 'senses')) {
+                        foreach ($entries->senses as $senses) {
+                            if (property_exists($senses, 'definitions')) {
+                                foreach ($senses->definitions as $definition) {
+                                    $def[] = $definition;
+                                }
                             }
                         }
                     }

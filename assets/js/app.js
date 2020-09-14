@@ -31,7 +31,7 @@ series.heatRules.push({
     "dataField": "value"
 });
 
-series.labels.template.url = "{{ url('/tag-cloud') }}?word={word}"; //TODO: Generate real path
+series.labels.template.url = "/search?word={word}"; //TODO: Generate real path
 series.labels.template.urlTarget = "_blank";
 series.labels.template.tooltipText = "{word}: {value}";
 
@@ -52,4 +52,3 @@ axios.get('/tags-cloud').then(response => {
     series.data = words;
 }).catch(error => console.log(error));
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

@@ -43,6 +43,21 @@ class GuzzleClient implements APIClientInterface
         $this->fields = $fields;
     }
 
+    public function getWord(): string
+    {
+        return $this->word;
+    }
+
+    public function getLang(): string
+    {
+        return $this->lang;
+    }
+
+    public function getFields(): string
+    {
+        return $this->fields;
+    }
+
     /**
      * @return string
      * @throws GuzzleException

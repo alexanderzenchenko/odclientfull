@@ -52,4 +52,8 @@ services:
             $appKey: '%app.apiKey%'
             $fields: '%app.fields%'
 
-    App\Services\Client\APIClientInterface $client: '@App\Services\Client\GuzzleClient'
+    App\Services\Client\APIClientInterface $client: '@App\Services\Client\GuzzleClientDecorator'
+
+    App\Services\Client\GuzzleClientDecorator:
+        arguments:
+            $cacheExpiration: '%app.cacheExpiration%'

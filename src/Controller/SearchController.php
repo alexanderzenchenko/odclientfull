@@ -12,18 +12,20 @@ class SearchController extends AbstractController
 {
     /**
      * @Route("/search", name="search")
+     *
+     * @param Request $request
+     * @param Dictionary $dictionary
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request, Dictionary $dictionary)
     {
         $word = $request->query->get('word');
 
-        $words = $dictionary->entries('en-gb', 'word');
-
-        dump($word);
-        dump($words);
+        $entries = $dictionary->entries('en-gb', $word);
 
         return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
+            'word' => $word,
+            'entries' => $entries,
         ]);
     }
 }
