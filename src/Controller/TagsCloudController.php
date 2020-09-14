@@ -13,7 +13,6 @@ class TagsCloudController extends AbstractController
     /**
      * @Route("/tags-cloud", name="tags_cloud")
      * @param TagsCloudInterface $tagsCloudService
-     * @param SerializerInterface $serializer
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function index(TagsCloudInterface $tagsCloudService)

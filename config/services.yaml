@@ -6,6 +6,10 @@
 parameters:
     app.tags_count: 50
     app.cacheExpiration: 3600
+    app.base_url: 'https://od-api.oxforddictionaries.com:443/api/v2/entries/'
+    app.apiID: '%env(resolve:API_ID)%'
+    app.apiKey: '%env(resolve:API_KEY)%'
+    app.fields: 'definitions,pronunciations'
 
 services:
     # default configuration for services in *this* file
@@ -40,3 +44,12 @@ services:
             $cacheExpiration: '%app.cacheExpiration%'
 
     App\Services\TagsCloudService\TagsCloudInterface $tagsCloudService: '@App\Services\TagsCloudService\TagsCloudServiceDecorator'
+
+    App\Services\Client\GuzzleClient:
+        arguments:
+            $baseUrl: '%app.base_url%'
+            $appId: '%app.apiID%'
+            $appKey: '%app.apiKey%'
+            $fields: '%app.fields%'
+
+    App\Services\Client\APIClientInterface $client: '@App\Services\Client\GuzzleClient'
